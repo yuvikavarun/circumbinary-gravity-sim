@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P-Type Circumbinary Planet Simulation</title>
+
+    <!-- Hello Stalker :0 --!>
+  
+    <!-- Fonts and Styles -->
+    <link href="[https://fonts.cdnfonts.com/css/star-jedi](https://fonts.cdnfonts.com/css/star-jedi)" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    
+    <!-- Map for Native Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "[https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js](https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js)",
+                "three/addons/": "[https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/](https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/)"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div id="ui">
+        <h2 class="star-wars-font">P-Type Circumbinary Planet Simulation</h2>
+        <p>Left-Click: Rotate | Right-Click: Pan | Scroll: Zoom</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; max-width: 500px;">
+            <button id="pause-toggle">Pause Simulation</button>
+            <button id="warp-toggle">Galactic Orbit (Helical Motion)</button>
+            <button id="focus-system">Focus: System</button>
+            <button id="focus-planet">Focus: Planet</button>
+            <button id="focus-star-a">Focus: Yellow Star</button>
+            <button id="focus-star-b">Focus: Red Star</button>
+        </div>
+    </div>
+
+    <!-- Physics Box -->
+    <div id="physics-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" id="physics-header">
+            <strong>[ STATS FOR NERDS ]</strong>
+            <span id="physics-toggle">▼</span>
+        </div>
+        <div id="physics-content" style="margin-top: 15px;">
+            <div style="margin-bottom: 5px;"><strong>Law of Gravitation:</strong></div>
+            <div class="math-text">F = G * (m₁ * m₂) / r²</div>
+            <hr>
+            <div><strong>Constants & Masses:</strong></div>
+            <table class="telemetry-table">
+                <tr><td>Grav Constant (G)</td><td class="dynamic-val">4000 (Scaled)</td></tr>
+                <tr><td>Mass Star A (M₁)</td><td class="dynamic-val">1.0 M☉</td></tr>
+                <tr><td>Mass Star B (M₂)</td><td class="dynamic-val">0.5 M☉</td></tr>
+                <tr><td>Mass Planet (mₚ)</td><td class="dynamic-val">0.001 M⊕</td></tr>
+            </table>
+            <hr>
+            <div><strong>Real-Time Distances (AU):</strong></div>
+            <table class="telemetry-table">
+                <tr><th>Metric</th><th>Distance</th></tr>
+                <tr><td>Star A ↔ Star B</td><td id="val-dist-ab" class="dynamic-val">0.000</td></tr>
+                <tr><td>Star A ↔ Center</td><td id="val-dist-ac" class="dynamic-val">0.000</td></tr>
+                <tr><td>Star B ↔ Center</td><td id="val-dist-bc" class="dynamic-val">0.000</td></tr>
+                <tr><td>Planet ↔ Center</td><td id="val-dist-pc" class="dynamic-val">0.000</td></tr>
+            </table>
+            <hr>
+            <div><strong>Orbital Velocities (km/s):</strong></div>
+            <table class="telemetry-table">
+                <tr><th>Object</th><th>Speed (|v|)</th></tr>
+                <tr><td>Yellow Star (A)</td><td id="val-vel-a" class="dynamic-val">0.000</td></tr>
+                <tr><td>Red Star (B)</td><td id="val-vel-b" class="dynamic-val">0.000</td></tr>
+                <tr><td>Planet</td><td id="val-vel-p" class="dynamic-val">0.000</td></tr>
+            </table>
+            <div style="color:#aaa; font-size: 0.75em; margin-top:10px; line-height:1.2;">
+                *N-Body Symplectic Euler integration active. Orbits dynamically computed via real-time Newtonian physics.
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to the JS File -->
+    <script type="module" src="./main.js"></script>
+
+    <!-- Footer -->
+    <div id="footer">Built by Yuvika Varun</div>
+
+</body>
+</html>
